@@ -1,2 +1,13 @@
 # DIO_SimuladorCadastroSeries
-Desafio DIO - Simular um sistema simples de cadastro de séries semelhante à Netflix
+Objetivo: Simular um aplicativo de cadastro de séries com operações CRUD (Create, Read, Update, Delete), semelhante à Netflix.
+Esse desafio foi proposto pela plataforma [DIO](https://www.dio.me/) em um de seus cursos de C#/.NET.
+
+## Objetivos específicos
+- Representar uma lista de séries em uma aplicação
+- As séries são implementadas como objetos, com números de id únicos
+- Além do id, cada série deve ter as propriedades: título, gênero, descrição e ano 
+- A edição da lista de séries é feita a partir de uma classe repositório, que implementa uma interface
+
+## Implementação
+- Além dos requisitos pedidos, foi criada também um objeto de interface com o usuário (UI)
+- O objeto encapsula a apresentação dos menus de interação e o tratamento dos inputs do usuário
