@@ -25,7 +25,7 @@ namespace DIO_SimuladorCadastroSeries.src.Classes
             string seriesData = $"Genre: {this.Genre}" + Environment.NewLine;            
             seriesData += $"Title: {this.Title}" + Environment.NewLine; 
             seriesData += $"Year: {this.Year}" + Environment.NewLine; 
-            seriesData += $"Description{this.Description}";
+            seriesData += $"Description: {this.Description}";
 
             if(this.Excluded){
                 seriesData += Environment.NewLine + "**Title unavailable**";
@@ -48,6 +48,10 @@ namespace DIO_SimuladorCadastroSeries.src.Classes
 
         public bool ReturnExcluded() {
             return this.Excluded;
+        }
+
+        public Genre ReturnGenre(){
+            return this.Genre;
         }
 
     }

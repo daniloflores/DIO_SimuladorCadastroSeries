@@ -1,6 +1,7 @@
 using System;
 using static System.Console;
 using DIO_SimuladorCadastroSeries.src.Enum;
+using System.Linq;
 
 namespace DIO_SimuladorCadastroSeries.src.Classes
 {
@@ -17,11 +18,12 @@ namespace DIO_SimuladorCadastroSeries.src.Classes
 
             WriteLine("------------ MAIN MENU -------------");
 			WriteLine("-- Choose your option to continue --");
-			WriteLine("1- List series");
+			WriteLine("1- List all series");
 			WriteLine("2- Insert new series");
 			WriteLine("3- Update series record");
 			WriteLine("4- Exclude series");
 			WriteLine("5- See series details");
+			WriteLine("6- List series by genre");
 			WriteLine("X- Exit");
 			WriteLine("------------------------------------");
             
@@ -48,6 +50,9 @@ namespace DIO_SimuladorCadastroSeries.src.Classes
                 case "5":
                     SeeSeries(sr);
                     break;
+				case "6":
+                    ListSeriesByGenre(sr);
+                    break;
                 case "C":
                     Clear();
                     break;
@@ -59,6 +64,16 @@ namespace DIO_SimuladorCadastroSeries.src.Classes
         }
 
         public static void ExcludeSeries(SeriesRepository sr){
+
+			var listSize = sr.NextId();
+
+			if (listSize == 0)
+			{
+				WriteLine("No series registered.");
+				return;
+			}
+
+
             Write("Choose series id: ");
 			int seriesId = int.Parse(ReadLine());
 
@@ -71,6 +86,15 @@ namespace DIO_SimuladorCadastroSeries.src.Classes
 
         public static void SeeSeries(SeriesRepository sr)
 		{
+
+			var listSize = sr.NextId();
+
+			if (listSize == 0)
+			{
+				WriteLine("No series registered.");
+				return;
+			}
+
 			Write("Choose series id: ");
 			int seriesId = int.Parse(ReadLine());
 
@@ -78,6 +102,7 @@ namespace DIO_SimuladorCadastroSeries.src.Classes
                 WriteLine("Invalid option");
             } else {
                 var series = sr.GetById(seriesId);
+				WriteLine("------------------------------------");
 			    WriteLine(series);
             }
 			
@@ -85,7 +110,6 @@ namespace DIO_SimuladorCadastroSeries.src.Classes
 
         public static void ListSeries(SeriesRepository sr)
 		{
-			WriteLine("Series list:");
 
 			var list = sr.ListAll();
 
@@ -95,82 +119,105 @@ namespace DIO_SimuladorCadastroSeries.src.Classes
 				return;
 			}
 
+			WriteLine("------------------------------------");
+			WriteLine("------------ Series list -----------");
+			WriteLine("------------------------------------");
+			WriteLine("   ID          Title                ");
+			WriteLine("  ----   -------------------------  ");
+			
 			foreach (var series in list)
             {
 				var excluded = series.ReturnExcluded();
-                WriteLine($"#ID {series.ReturnId()}: - {series.ReturnTitle()} {(excluded ? "*Not available*" : "")}");
+                WriteLine($" {series.ReturnId(),4}     {series.ReturnTitle()} {(excluded ? "  *Not available*" : "")}");
 			}
+		}
+
+		protected static Series setSeriesInfo(int seriesId){
+
+			Array valueArray = Genre.GetValues(typeof(Genre));
+            foreach (int i in valueArray)
+			{
+				WriteLine("{0}-{1}", i, Genre.GetName(typeof(Genre), i));
+			}
+			Write("Choose from one of the genres above: ");
+			int genreInput = int.Parse(ReadLine());
+
+			Write("Type in the series title: ");
+			string titleInput = ReadLine();
+
+			Write("Type in the series start year: ");
+			int yearInput = int.Parse(ReadLine());
+
+			Write("Type in the series description: ");
+			string descriptionInput = ReadLine();
+
+			Series seriesInfo = new Series(id: seriesId,
+										genre: (Genre)genreInput,
+										title: titleInput,
+										year: yearInput,
+										description: descriptionInput);
+			
+			return seriesInfo;
 		}
 
         public static void InsertSeries(SeriesRepository sr)
 		{
 			int seriesId = sr.NextId();
 
-			// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getvalues?view=netcore-3.1
-			// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getname?view=netcore-3.1
-			
-            Array valueArray = Genre.GetValues(typeof(Genre));
+			Series newSeries = setSeriesInfo(seriesId);
 
-            //Array valueArray = Enum.GetValues(typeof(Genre));
-            foreach (int i in valueArray)
-			{
-				WriteLine("{0}-{1}", i, Genre.GetName(typeof(Genre), i));
-			}
-			Write("Choose from one of the genres above: ");
-			int genreInput = int.Parse(ReadLine());
-
-			Write("Type in the series title: ");
-			string titleInput = ReadLine();
-
-			Write("Type in the series start year: ");
-			int yearInput = int.Parse(ReadLine());
-
-			Write("Type in the series description: ");
-			string descriptionInput = ReadLine();
-
-			Series newSeries = new Series(id: seriesId,
-										genre: (Genre)genreInput,
-										title: titleInput,
-										year: yearInput,
-										description: descriptionInput);
-
-			sr.Update(seriesId, newSeries);
+			sr.Insert(newSeries);
         }
 
         public static void UpdateSeries(SeriesRepository sr)
 		{
+
+			var listSize = sr.NextId();
+
+			if (listSize == 0)
+			{
+				WriteLine("No series registered.");
+				return;
+			}
+
 			Write("Choose series id: ");
 			int seriesId = int.Parse(ReadLine());
 
-			// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getvalues?view=netcore-3.1
-			// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getname?view=netcore-3.1
-			
-            Array valueArray = Genre.GetValues(typeof(Genre));
+			Series updatedSeries = setSeriesInfo(seriesId);
 
-            //Array valueArray = Enum.GetValues(typeof(Genre));
+			sr.Update(seriesId, updatedSeries);
+        }
+
+		public static void ListSeriesByGenre(SeriesRepository sr)
+		{
+
+			Array valueArray = Genre.GetValues(typeof(Genre));
             foreach (int i in valueArray)
 			{
 				WriteLine("{0}-{1}", i, Genre.GetName(typeof(Genre), i));
 			}
 			Write("Choose from one of the genres above: ");
+
 			int genreInput = int.Parse(ReadLine());
+			var listByGenre = sr.ListAll().Where(series => series.ReturnGenre() == (Genre)genreInput);
 
-			Write("Type in the series title: ");
-			string titleInput = ReadLine();
+			// if (listByGenre.Count == 0)
+			// {
+			// 	WriteLine("No series registered in this Genre.");
+			// 	return;
+			// }
 
-			Write("Type in the series start year: ");
-			int yearInput = int.Parse(ReadLine());
-
-			Write("Type in the series description: ");
-			string descriptionInput = ReadLine();
-
-			Series updatedSeries = new Series(id: seriesId,
-										genre: (Genre)genreInput,
-										title: titleInput,
-										year: yearInput,
-										description: descriptionInput);
-
-			sr.Update(seriesId, updatedSeries);
-        }
+			WriteLine("------------------------------------");
+			WriteLine($"------------ Series list -----------");
+			WriteLine("------------------------------------");
+			WriteLine("   ID          Title                ");
+			WriteLine("  ----   -------------------------  ");
+			
+			foreach (var series in listByGenre)
+            {
+				var excluded = series.ReturnExcluded();
+                WriteLine($" {series.ReturnId(),4}     {series.ReturnTitle()} {(excluded ? "  *Not available*" : "")}");
+			}
+		}
     }
 }

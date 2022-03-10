@@ -6,14 +6,6 @@ namespace DIO_SimuladorCadastroSeries.src.Classes
     public class SeriesRepository : IReposiory<Series>
     {
         private List<Series> seriesList = new List<Series>();
-        // public static List<Genre> genres = new List<Genres>();
-        
-        // public string ListGenres(){
-        //     for (int i = 0; i < 13; i++)
-        //     {
-        //         Genre g = new Genre()
-        //     }
-        // }
 
         public List<Series> ListAll() {
             return seriesList;
