@@ -1,0 +1,13 @@
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\obj\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.csprojAssemblyReference.cache
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\obj\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.AssemblyInfoInputs.cache
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\obj\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.AssemblyInfo.cs
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\obj\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.csproj.CoreCompileInputs.cache
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\bin\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.exe
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\bin\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.deps.json
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\bin\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.runtimeconfig.json
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\bin\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.runtimeconfig.dev.json
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\bin\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.dll
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\bin\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.pdb
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\obj\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.dll
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\obj\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.pdb
+C:\dioDotNetTests\DIO_SimuladorCadastroSeries\obj\Debug\netcoreapp3.1\DIO_SimuladorCadastroSeries.genruntimeconfig.cache
