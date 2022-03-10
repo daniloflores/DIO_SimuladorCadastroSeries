@@ -11,6 +11,6 @@ Esse desafio foi proposto pela plataforma [DIO](https://www.dio.me/) em um de se
 ## Implementação
 - Além dos requisitos pedidos, foi criada também um objeto de interface com o usuário (UI)
 - O objeto encapsula a apresentação dos menus de interação e o tratamento dos inputs do usuário
-- O usuário tem as opções previstar de listar series, excluir, atualizar e inserir novas séries
+- O usuário tem as opções de listar as séries, excluir, atualizar e inserir novas séries
 - Uma opção extra foi adicionada ao menu para listar séries por gênero
   - Para tanto, a lista de séries é filtrada usando a biblioteca LINQ do C#
