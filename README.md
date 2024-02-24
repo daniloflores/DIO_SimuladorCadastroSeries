@@ -9,7 +9,7 @@ Esse desafio foi proposto pela plataforma [DIO](https://www.dio.me/) em um de se
 - A edição da lista de séries é feita a partir de uma classe repositório, que implementa uma interface
 
 ## Implementação
-- Além dos requisitos pedidos, foi criada também um objeto de interface com o usuário (UI)
+- Além dos requisitos pedidos, foi criado também um objeto de interface com o usuário (UI)
 - O objeto encapsula a apresentação dos menus de interação e o tratamento dos inputs do usuário
 - O usuário tem as opções de listar as séries, excluir, atualizar e inserir novas séries
 - Uma opção extra foi adicionada ao menu para listar séries por gênero
